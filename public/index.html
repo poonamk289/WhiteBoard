@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>white board</title>
+
+    <style>
+        #tools {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+
+     
+    </style>
+</head>
+<body>
+    
+    <div id="tools">
+        <button id="penTool">Pen</button>
+        <button id="rectTool">Rectangle</button>
+        <button id="circleTool">Circle</button>
+        <button id="textTool">Text</button>
+        <button id="addLayer">Add Layer</button>
+
+
+    </div>
+
+
+    <button onclick="saveSession()">Save</button>
+     <button onclick="loadSession()">Load</button>
+   <canvas id="canvas"></canvas>
+   <button id="exportImage">Export as Image</button>
+   <button id="exportPDF">Export as PDF</button>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" ></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+
+   <script src="./script.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Collaborative Whiteboard</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #toolbar {
+            background-color: #c2cf98;
+            padding: 30px;
+            display: flex;
+            
+            justify-content: space-between;
+            gap: 100px;
+        }
+        #canvas-container {
+            flex: 1;
+            position: relative;
+        }
+        canvas {
+            border: 1px solid #ccc;
+        }
+        .exportbtn{
+            /* border: 1px solid red; */
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar for tools -->
+    <div id="welcome-message"></div>
+    <div id="toolbar">
+        <div>
+            <button id="penTool"><i class="fa-solid fa-pencil">.</i></button>
+            <button id="rectTool"><i class="fa-regular fa-square"></i></button>
+            <button id="circleTool"><i class="fa-regular fa-circle"></i></button>
+            <button id="lineTool"><i class="fa-solid fa-angle-right"></i></button>
+            <button id="clearCanvas">Clear Canvas</button>
+            <button id="saveCanvas">Save Canvas</button>
+
+            <button id="saveDrawing">Save Drawing</button>
+<button id="loadDrawings">Load My Drawings</button>
+<div id="drawingsList"></div>
+
+        </div>
+        <div class="exportbtn">
+            <div>
+                <a href="/auth/google"> 
+                    <button id="loginButton"><i class="fa-solid fa-user"></i> Login with Google</button>
+                </a>
+                <a href="/logout"> 
+                    <button id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </a>
+            </div>
+            <button id="exportImage">Export as Image</button>
+            <button id="exportPDF">Export as PDF</button>
+        </div>
+        
+    </div>
+
+    <!-- Canvas Container -->
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+        
+    </div>
+    
+    <!-- Include Fabric.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+
+    <!-- Include Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Custom Script -->
+    <script src="./script.js"></script>
+</body>
+</html>
+ 
